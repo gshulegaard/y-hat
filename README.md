@@ -24,7 +24,7 @@ $ make api
 ```
 
 A docker network is not specified, so the local system's default docker network
-will be bound to.  You should be able to find the address using `docker ps` and
+will be used.  You should be able to find the address using `docker ps` and
 `docker inspect [container]`.
 
 Openapi docs are available at `<docker_network_ip>:8000/docs`.  For sanity

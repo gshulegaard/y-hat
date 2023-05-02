@@ -32,3 +32,6 @@ app.ext.openapi.describe(
 ## Add routes
 from y_hat.views.ping import Ping
 app.add_route(Ping.as_view(), "/ping")
+
+from y_hat.views.calculator import Calculator
+app.add_route(Calculator.as_view(), "/amortization/schedule")
