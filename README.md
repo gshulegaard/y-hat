@@ -30,3 +30,14 @@ will be used.  You should be able to find the address using `docker ps` and
 Openapi docs are available at `<docker_network_ip>:8000/docs`.  For sanity
 checking, you can try to hit the ping endpoint at
 `<docker_network_ip>:8000/ping`.
+
+
+An example curl against the schedule endpoint:
+
+``` bash
+curl -X POST 172.23.0.3:8000/amortization/schedule \
+   -H 'Content-Type: application/json' \
+   -d '{"initial_principal":100000.00,"rate":5.000, "n": 120}'
+```
+
+Replace `172.23.0.3` with docker network IP assigned on your system.
