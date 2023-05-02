@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  y-hat-dev:
+    platform: linux/x86_64
+    build:
+      context: ..
+      dockerfile: docker/dev.dockerfile
+    volumes:
+      # Mount external docker sock (not used here, but I always do it for my dev
+      #  containers)
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/opt/y-hat
+    tty: true
+    stdin_open: true
+
+  y-hat-api:
+    platform: linux/x86_64
+    build:
+      context: ..
+      dockerfile: docker/api.dockerfile
+    volumes:
+      # Mount external docker sock (not used here, but I always do it for my dev
+      #  containers)
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/opt/y-hat
+    ports:
+      - "8000:8000"
+    entrypoint: python3 -m sanic y_hat.app:app -H 0.0.0.0 -p 8000 --debug --workers 2
